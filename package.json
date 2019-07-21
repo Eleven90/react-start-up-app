@@ -1,0 +1,72 @@
+{
+  "name": "@eleven/react-start-up-app",
+  "version": "1.0.0",
+  "description": "react-start-up-app",
+  "main": "dist/index.min.js",
+  "scripts": {
+    "start": "yarn run dev",
+    "dev": "cross-env webpack-dev-server --hot --config build/webpack.config.dev.js --colors --profile",
+    "build": "cross-env webpack --config build/webpack.config.build.js --colors --profile",
+    "pub": "npm publish --access=public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Eleven90/react-start-up-app.git"
+  },
+  "keywords": [
+    "react-start-up-app"
+  ],
+  "author": "Eleven",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.4",
+    "clean-webpack-plugin": "^1.0.0",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.0.1",
+    "cssnano": "^4.1.7",
+    "eslint": "^5.16.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^2.1.2",
+    "file-loader": "^2.0.0",
+    "happypack": "^5.0.1",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-flexbugs-fixes": "^4.1.0",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.5.0",
+    "postcss-safe-parser": "^4.0.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-hot-loader": "^4.12.8",
+    "style-loader": "^0.23.1",
+    "template-string-optimize-loader": "^3.0.0",
+    "terser-webpack-plugin": "^1.2.3",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.2.0",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.5"
+  },
+  "dependencies": {
+    "core-js": "^3.1.4",
+    "mars-detect": "^1.0.0",
+    "regenerator-runtime": "^0.13.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

@@ -1,0 +1,44 @@
+@bgColor: #ff7459;
+@bgActive: darken(#ff7459, 5%);
+@bgDisabled: #aaa;
+
+.open-app {
+  padding: 8px 15px;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 5px;
+  line-height: normal;
+  background-color: @bgColor;
+  &:disabled {
+    background-color: @bgDisabled;
+  }
+  &:active,
+  &.loading {
+    background-color: @bgActive;
+  }
+  &:after {
+    display: none;
+    content: "";
+    width: 15px;
+    height: 15px;
+    margin-left: .1rem;
+    border: 2px solid #fff;
+    border-top-color: #F1DEAA;
+    border-radius: 50%;
+    vertical-align: middle;
+    animation: rotate 2s infinite linear;
+    box-sizing: border-box;
+  }
+  &.loading:after {
+    display: inline-block;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
