@@ -1,13 +1,13 @@
 {
-  "name": "@eleven/react-start-up-app",
-  "version": "1.0.0",
+  "name": "@eleven.xi/react-start-up-app",
+  "version": "2.0.0",
   "description": "react-start-up-app",
   "main": "dist/index.min.js",
   "scripts": {
     "start": "yarn run dev",
     "dev": "cross-env webpack-dev-server --hot --config build/webpack.config.dev.js --colors --profile",
     "build": "cross-env webpack --config build/webpack.config.build.js --colors --profile",
-    "pub": "npm publish --access=public"
+    "pub": "yarn build && npm publish --access=public"
   },
   "repository": {
     "type": "git",

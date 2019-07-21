@@ -40,10 +40,10 @@ module.exports = merge(base, {
     new CleanPlugin([path.resolve(__dirname, '..', 'dist/*')], {
       allowExternal: true,
     }),
-    new MiniCssExtractPlugin({
-      filename: '[name].min.css',
-      chunkFilename: '[name].min.css',
-    }),
+    // new MiniCssExtractPlugin({
+    //   filename: '[name].min.css',
+    //   chunkFilename: '[name].min.css',
+    // }),
     new webpack.HashedModuleIdsPlugin(),
   ],
   optimization: {
