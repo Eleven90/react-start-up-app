@@ -1,14 +1,13 @@
 /*
- * @Desc: 从浏览器H5打开喜马拉雅App
+ * @Desc: 从浏览器H5启动手机App
  * @Author: Eleven
  * @Date: 2019-07-21 23:40:56
  * @Last Modified by: Eleven
- * @Last Modified time: 2019-07-22 01:16:08
+ * @Last Modified time: 2019-07-22 03:10:53
  */
 
 import React from 'react'
 import PropTypes from 'prop-types'
-// 判断浏览器和系统种类: https://github.com/QLFE/mars-detect
 import detect from 'mars-detect'
 import './style'
 
@@ -25,22 +24,23 @@ export default class StartUpApp extends React.Component {
   }
 
   static defaultProps = {
-    text: '打开喜马拉雅App',  // 按钮文案
+    text: '打开App',  // 按钮文案
     isDisabled: false,  // 是否禁用按钮
-    link: 'iting://open', // iting地址
-    fail() {  // 启动失败，默认启动下载
-      // 下载链接
-      window.location.href = '//www.ximalaya.com/down'
-      // 公用下载页面地址
-      // window.location.href = '//m.ximalaya.com/applink'
+    link: '', // URL scheme
+    funcInWeixin() {
+      // 微信屏蔽了直接唤起app => 所以需要自己去做一点操作，例如：区分安卓、IOS，选择跳转对应下载页。
+    },
+    fail() {
+      // 启动失败，默认启动下载
     }
   }
 
   static propTypes = {
-    text: PropTypes.string,
+    text: PropTypes.string.isRequired,
     isDisabled: PropTypes.bool,
-    link: PropTypes.string,
-    fail: PropTypes.func,
+    link: PropTypes.string.isRequired,
+    funcInWeixin: PropTypes.func,
+    fail: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
@@ -52,13 +52,6 @@ export default class StartUpApp extends React.Component {
     this.timer && clearTimeout(this.timer)
   }
 
-  /**
-   * 启动喜马拉雅app:
-   *  1.微信屏蔽了直接唤起app,所以选择跳转对应下载页;
-   *  2.不通过以下方式,直接暴力跳往'//m.ximalaya.com/applink',也可以;
-   *
-   * 不错的参考实践: https://www.cnblogs.com/simba-lkj/p/8027809.html
-   */
   openApp = () => {
     // loading,并禁用(防重复点击).
     this.setState({
@@ -66,7 +59,7 @@ export default class StartUpApp extends React.Component {
       loadingClass: 'loading',
     })
 
-    const itingLink = this.props.link
+    const link = this.props.link
     const isIos = detect.os.ios
     const isAndroid = detect.os.android
     const isWeixin = detect.browser.weixin
@@ -74,25 +67,23 @@ export default class StartUpApp extends React.Component {
     const timeout = 2300
     const { resetBtn, handlerFail } = this
 
-    // 微信屏蔽了直接唤起app,所以选择跳转对应下载页.
+    // 微信屏蔽了直接唤起app，所以需要执行特殊操作。
     if (isWeixin) {
-      // 安卓前往应用宝下载页,其他进入另一种下载页
-      const url = isAndroid ? '//www.ximalaya.com/down' : '//m.ximalaya.com/applink'
-
-      window.location.href = url
+      const { funcInWeixin } = this.props
+      typeof funcInWeixin === 'function' && funcInWeixin()
       return
     }
 
     // ios直接启动更好
     if (isIos) {
-      window.location.href = itingLink
+      window.location.href = link
     }
 
     // 安卓通过iframe启动更好
     if (isAndroid) {
       let iframe = document.createElement('iframe')
 
-      iframe.src = itingLink
+      iframe.src = link
       iframe.style.display = 'none'
       document.body.appendChild(iframe)
 
