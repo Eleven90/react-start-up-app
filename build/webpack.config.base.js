@@ -37,20 +37,14 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
+        // use: [styleLoader, 'css-loader', 'postcss-loader'],
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.less$/,
+        // use: [styleLoader, 'css-loader', 'postcss-loader', 'less-loader'],
         use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
       },
-      // {
-      //   test: /\.css$/,
-      //   use: [styleLoader, 'css-loader', 'postcss-loader'],
-      // },
-      // {
-      //   test: /\.less$/,
-      //   use: [styleLoader, 'css-loader', 'postcss-loader', 'less-loader'],
-      // },
       {
         test: /\.js$/,
         enforce: 'pre',

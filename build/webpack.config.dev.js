@@ -1,4 +1,5 @@
 process.env.NODE_ENV = 'development'
+process.env.devtool = 'cheap-module-source-map'
 
 const path = require('path')
 const webpack = require('webpack')
@@ -12,12 +13,13 @@ module.exports = merge(base, {
   entry: {
     demo: path.resolve(__dirname, '..', 'demo/index.js'),
   },
-  devtool: 'cheap-module-source-map',
+  devtool: process.env.devtool,
   devServer: {
     contentBase: paths.appDist,
     // openPage: 'index.html', // 指定默认启动浏览器时打开的页面
     index: 'index.html', // 指定首页位置
-    host: 'localhost',  // '0.0.0.0' 可以通过外网访问
+    // host: 'localhost',  // '0.0.0.0' 可以通过外网访问
+    host: '0.0.0.0',  // '0.0.0.0' 可以通过外网访问
     port: 3000,
     inline: true,
     hot: true,

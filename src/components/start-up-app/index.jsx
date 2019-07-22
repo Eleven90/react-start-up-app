@@ -3,7 +3,7 @@
  * @Author: Eleven
  * @Date: 2019-07-21 23:40:56
  * @Last Modified by: Eleven
- * @Last Modified time: 2019-07-22 03:10:53
+ * @Last Modified time: 2019-07-22 10:48:09
  */
 
 import React from 'react'
@@ -27,6 +27,7 @@ export default class StartUpApp extends React.Component {
     text: '打开App',  // 按钮文案
     isDisabled: false,  // 是否禁用按钮
     link: '', // URL scheme
+    timeout: 2300, // 预留的 app 启动时间
     funcInWeixin() {
       // 微信屏蔽了直接唤起app => 所以需要自己去做一点操作，例如：区分安卓、IOS，选择跳转对应下载页。
     },
@@ -39,6 +40,7 @@ export default class StartUpApp extends React.Component {
     text: PropTypes.string.isRequired,
     isDisabled: PropTypes.bool,
     link: PropTypes.string.isRequired,
+    timeout: PropTypes.number,
     funcInWeixin: PropTypes.func,
     fail: PropTypes.func.isRequired,
   }
@@ -64,7 +66,7 @@ export default class StartUpApp extends React.Component {
     const isAndroid = detect.os.android
     const isWeixin = detect.browser.weixin
     const startTime = Date.now()
-    const timeout = 2300
+    const timeout = this.props.timeout
     const { resetBtn, handlerFail } = this
 
     // 微信屏蔽了直接唤起app，所以需要执行特殊操作。

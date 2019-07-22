@@ -1,4 +1,5 @@
 process.env.NODE_ENV = 'production'
+process.env.devtool = false
 
 const path = require('path')
 const webpack = require('webpack')
@@ -10,7 +11,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const safePostCssParser = require('postcss-safe-parser')
 
-const shouldUseSourceMap = true
+const shouldUseSourceMap = process.env.devtool
 
 module.exports = merge(base, {
   mode: 'production',
@@ -18,10 +19,10 @@ module.exports = merge(base, {
     filename: '[name].min.js',
     chunkFilename: '[name].min.js',
     libraryTarget: 'umd',
-    library: 'react-start-up-app',
+    // library: 'reactStartUpApp', // 不设置 => 不挂载到 window/global
     libraryExport: 'default',
   },
-  devtool: false,
+  devtool: shouldUseSourceMap,
   externals: {
     'react': {
       root: 'React',
@@ -97,7 +98,7 @@ module.exports = merge(base, {
       new OptimizeCSSAssetsPlugin({
         cssProcessorOptions: {
           parser: safePostCssParser,  // https://github.com/postcss/postcss-safe-parser
-          map: !shouldUseSourceMap
+          map: shouldUseSourceMap
             ? {
                 // `inline: false` forces the sourcemap to be output into a
                 // separate file

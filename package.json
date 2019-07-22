@@ -1,6 +1,6 @@
 {
   "name": "@eleven.xi/react-start-up-app",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "react-start-up-app",
   "main": "dist/index.min.js",
   "scripts": {
@@ -68,5 +68,6 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "files": ["dist", "ReadMe.md"]
 }
