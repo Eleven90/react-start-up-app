@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom'
 import { hot } from 'react-hot-loader'
 import StartUpApp from 'src/components/start-up-app'
 
+// 网页 reset
+import('@eleven.xi/reset.css')
+
 class App extends Component {
   render() {
     return (

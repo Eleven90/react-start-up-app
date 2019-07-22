@@ -1,7 +1,7 @@
 {
   "name": "@eleven.xi/react-start-up-app",
   "version": "2.3.1",
-  "description": "react-start-up-app",
+  "description": "web页面启动手机App",
   "main": "dist/index.min.js",
   "scripts": {
     "start": "yarn run dev",
@@ -60,6 +60,7 @@
     "webpack-merge": "^4.1.5"
   },
   "dependencies": {
+    "@eleven.xi/reset.css": "^1.0.0",
     "core-js": "^3.1.4",
     "mars-detect": "^1.0.0",
     "regenerator-runtime": "^0.13.2"
@@ -69,5 +70,8 @@
     "last 2 versions",
     "not ie <= 8"
   ],
-  "files": ["dist", "ReadMe.md"]
+  "files": [
+    "dist",
+    "ReadMe.md"
+  ]
 }
