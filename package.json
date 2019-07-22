@@ -1,6 +1,6 @@
 {
   "name": "@eleven.xi/react-start-up-app",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "从浏览器H5启动手机App",
   "main": "dist/index.min.js",
   "scripts": {
