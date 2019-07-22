@@ -25,7 +25,7 @@ import StartUpApp from '@eleven.xi/react-start-up-app'
   text="打开微信App" // 按钮文案
   isDisabled={false} // 是否禁用启动按钮
   link={'weixin://'} // 填写需要启动的 App 的 URL scheme，例如微信的是 'weixin://'
-  timeout={2300}, // 预留的 app 启动时间（单位：毫秒，默认2300）
+  timeout={2300} // 预留的 app 启动时间（单位：毫秒，默认2300）
   funcInWeixin={isWeiXin} // 微信中执行传入的方法，受微信限制，无法启动 App
   fail={fail} // 启动失败时执行的回调
 />

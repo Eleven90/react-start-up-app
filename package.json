@@ -1,6 +1,6 @@
 {
   "name": "@eleven.xi/react-start-up-app",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "react-start-up-app",
   "main": "dist/index.min.js",
   "scripts": {
