@@ -737,10 +737,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@eleven.xi/reset.css@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@eleven.xi/reset.css/-/reset.css-1.0.0.tgz#ddf08918b7f6de98df9b189a61cab740ddaa9bb0"
-  integrity sha512-2m74svPfIi8m12livi0JUXCpc5ezrx1CcxCn+KX5PNKpPDn4bh0Izs5Q3I3AxLmtckRa9T/bL8cFqQomDNlixQ==
+"@eleven.xi/reset.css@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@eleven.xi/reset.css/-/reset.css-1.0.1.tgz#e5cdb1e5d6fcb5a48bcf07428d110bf22ae31ce5"
+  integrity sha512-Lgv5KB1zxqNJLCnxeqvZKfDV6GG6VuLhrcF8P+OBsnhorHwzAG8+WGdLPSo+wbF982BDw6AsNACI/4YcQGRREQ==
 
 "@types/events@*":
   version "3.0.0"
@@ -4228,11 +4228,6 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-mars-detect@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/mars-detect/-/mars-detect-1.0.0.tgz#3448e7c038572e5d20e9b98dee5d731010183fa1"
-  integrity sha512-zFWT9udEOk/f1BKDxU9vucSvUkvcVKlm0aOew93JKF2ST1E5nJUIjTU9bK0mkC0r4wsPVDprbjCp0Bu118Nwvg==
-
 md5.js@^1.3.4:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/md5.js/-/md5.js-1.3.5.tgz#b5d07b8e3216e3e27cd728d72f70d1e6a342005f"
@@ -7143,6 +7138,11 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
+
+vconsole@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/vconsole/-/vconsole-3.3.2.tgz#07424f8de2e5e2586c504042093948435ed2de06"
+  integrity sha512-d5f6/q0U62Ojv5P7ROZy9TYP9te51v3QsuhNT0yZ0lZ+kN4R4rhYMpW5Y3FvYOerAhKkcnweiXQIZoKkziZEKg==
 
 vendors@^1.0.0:
   version "1.0.3"

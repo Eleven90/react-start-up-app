@@ -19,6 +19,7 @@ module.exports = merge(base, {
     // openPage: 'index.html', // 指定默认启动浏览器时打开的页面
     index: 'index.html', // 指定首页位置
     host: 'localhost',  // '0.0.0.0' 可以通过外网访问
+    // host: '0.0.0.0',  // '0.0.0.0' 可以通过外网访问
     port: 3000,
     inline: true,
     hot: true,

@@ -3,29 +3,24 @@
  * @Author: Eleven
  * @Date: 2019-07-21 23:40:56
  * @Last Modified by: Eleven
- * @Last Modified time: 2019-07-22 10:48:09
+ * @Last Modified time: 2019-07-22 18:29:12
  */
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import detect from 'mars-detect'
 import './style'
 
+const ua = window.navigator.userAgent
+const isIos = /(ipad|iphone|ipod)/i.test(ua)
+const isAndroid = /android/i.test(ua)
+const isWeixin = /MicroMessenger/i.test(ua)
+
+
 export default class StartUpApp extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      isDisabled: this.props.isDisabled,  // 是否禁用按钮
-      loadingClass: '', // 按钮loading class
-    }
-
-    this.timer = null // 定时器,用于判定唤起app失败
-  }
-
   static defaultProps = {
     text: '打开App',  // 按钮文案
-    isDisabled: false,  // 是否禁用按钮
+    isDisabled: false,  // 初始是否禁用按钮
+    autoLoading: true, // 启动过程中是否启用 loading
     link: '', // URL scheme
     timeout: 2300, // 预留的 app 启动时间
     funcInWeixin() {
@@ -39,10 +34,22 @@ export default class StartUpApp extends React.Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
     isDisabled: PropTypes.bool,
+    autoLoading: PropTypes.bool,
     link: PropTypes.string.isRequired,
     timeout: PropTypes.number,
     funcInWeixin: PropTypes.func,
     fail: PropTypes.func.isRequired,
+  }
+  
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      isDisabled: this.props.isDisabled,  // 是否禁用按钮
+      loadingClass: '', // 按钮loading class
+    }
+
+    this.timer = null // 定时器,用于判定唤起app失败
   }
 
   componentDidMount() {
@@ -54,17 +61,17 @@ export default class StartUpApp extends React.Component {
     this.timer && clearTimeout(this.timer)
   }
 
+  /**
+   * 启动 app
+   */
   openApp = () => {
     // loading,并禁用(防重复点击).
     this.setState({
       isDisabled: 'disabled',
-      loadingClass: 'loading',
+      loadingClass: this.props.autoLoading ? 'loading' : '',
     })
 
     const link = this.props.link
-    const isIos = detect.os.ios
-    const isAndroid = detect.os.android
-    const isWeixin = detect.browser.weixin
     const startTime = Date.now()
     const timeout = this.props.timeout
     const { resetBtn, handlerFail } = this
@@ -73,6 +80,7 @@ export default class StartUpApp extends React.Component {
     if (isWeixin) {
       const { funcInWeixin } = this.props
       typeof funcInWeixin === 'function' && funcInWeixin()
+      resetBtn()
       return
     }
 
@@ -110,6 +118,14 @@ export default class StartUpApp extends React.Component {
   }
 
   /**
+   * 唤起失败执行
+   */
+  handlerFail = () => {
+    this.props.fail()
+    this.resetBtn()
+  }
+
+  /**
    * 重置启动按钮
    */
   resetBtn = () => {
@@ -118,6 +134,7 @@ export default class StartUpApp extends React.Component {
       isDisabled: false,
       loadingClass: '',
     })
+    this.timer && clearTimeout(this.timer)
   }
 
   /**
@@ -127,28 +144,16 @@ export default class StartUpApp extends React.Component {
     const _this = this
 
     document.addEventListener('visibilitychange', function() {
-      const tag = document.hidden || document.webkitHidden
-      tag && _this.timer && clearTimeout(_this.timer)
-      _this.resetBtn()
+      const isHidden = document.hidden || document.webkitHidden
+      isHidden && _this.resetBtn()
     })
     document.addEventListener('webkitvisibilitychange', function() {
-      const tag = document.hidden || document.webkitHidden
-      tag && _this.timer && clearTimeout(_this.timer)
-      _this.resetBtn()
+      const isHidden = document.hidden || document.webkitHidden
+      isHidden && _this.resetBtn()
     })
     window.addEventListener('pagehide', function() {
-      _this.timer && clearTimeout(_this.timer)
       _this.resetBtn()
     })
-  }
-
-  /**
-   * 唤起失败执行
-   */
-  handlerFail = () => {
-    const { fail } = this.props
-
-    fail()
   }
 
   render() {
