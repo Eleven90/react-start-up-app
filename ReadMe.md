@@ -1,4 +1,4 @@
-# react-start-up-app
+# [react-start-up-app](https://www.npmjs.com/package/@eleven.xi/react-start-up-app)
 
 > 从 H5 页面启动手机 App，微信限制了启动 App，所以需要单独传入 callback 去执行自己的逻辑，例如：区分安卓、IOS，选择跳转对应下载页，或者跳app store、安卓应用市场。
 
