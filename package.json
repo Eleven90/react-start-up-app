@@ -1,6 +1,6 @@
 {
   "name": "@eleven.xi/react-start-up-app",
-  "version": "2.4.0",
+  "version": "2.5.1",
   "description": "从浏览器H5启动手机App",
   "main": "dist/index.min.js",
   "scripts": {
@@ -72,6 +72,7 @@
   ],
   "files": [
     "dist",
-    "ReadMe.md"
+    "ReadMe.md",
+    "docs"
   ]
 }

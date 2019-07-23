@@ -3,7 +3,7 @@
  * @Author: Eleven
  * @Date: 2019-07-21 23:40:56
  * @Last Modified by: Eleven
- * @Last Modified time: 2019-07-22 18:29:12
+ * @Last Modified time: 2019-07-23 20:51:19
  */
 
 import React from 'react'
@@ -11,33 +11,31 @@ import PropTypes from 'prop-types'
 import './style'
 
 const ua = window.navigator.userAgent
-const isIos = /(ipad|iphone|ipod)/i.test(ua)
+const isIOS = /(ipad|iphone|ipod)/i.test(ua)
 const isAndroid = /android/i.test(ua)
-const isWeixin = /MicroMessenger/i.test(ua)
+const isWeChat = /MicroMessenger/i.test(ua)
 
 
 export default class StartUpApp extends React.Component {
   static defaultProps = {
     text: '打开App',  // 按钮文案
+    link: '', // URL scheme
     isDisabled: false,  // 初始是否禁用按钮
     autoLoading: true, // 启动过程中是否启用 loading
-    link: '', // URL scheme
     timeout: 2300, // 预留的 app 启动时间
-    funcInWeixin() {
-      // 微信屏蔽了直接唤起app => 所以需要自己去做一点操作，例如：区分安卓、IOS，选择跳转对应下载页。
-    },
     fail() {
-      // 启动失败，默认启动下载
+      // 启动失败时执行
+      // 微信环境中直接执行
+      // 微信屏蔽了直接唤起app => 所以需要自己去做一点操作，例如：区分安卓、IOS，选择跳转对应下载页。
     }
   }
 
   static propTypes = {
     text: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired,
     isDisabled: PropTypes.bool,
     autoLoading: PropTypes.bool,
-    link: PropTypes.string.isRequired,
     timeout: PropTypes.number,
-    funcInWeixin: PropTypes.func,
     fail: PropTypes.func.isRequired,
   }
   
@@ -77,15 +75,13 @@ export default class StartUpApp extends React.Component {
     const { resetBtn, handlerFail } = this
 
     // 微信屏蔽了直接唤起app，所以需要执行特殊操作。
-    if (isWeixin) {
-      const { funcInWeixin } = this.props
-      typeof funcInWeixin === 'function' && funcInWeixin()
-      resetBtn()
+    if (isWeChat) {
+      handlerFail()
       return
     }
 
     // ios直接启动更好
-    if (isIos) {
+    if (isIOS) {
       window.location.href = link
     }
 
@@ -121,7 +117,8 @@ export default class StartUpApp extends React.Component {
    * 唤起失败执行
    */
   handlerFail = () => {
-    this.props.fail()
+    const { fail } = this.props
+    typeof fail === 'function' && fail(isWeChat)
     this.resetBtn()
   }
 
