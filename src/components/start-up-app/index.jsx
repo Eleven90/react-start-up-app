@@ -3,10 +3,10 @@
  * @Author: Eleven
  * @Date: 2019-07-21 23:40:56
  * @Last Modified by: Eleven
- * @Last Modified time: 2019-07-23 20:51:19
+ * @Last Modified time: 2019-07-24 19:56:19
  */
 
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './style'
 
@@ -16,7 +16,7 @@ const isAndroid = /android/i.test(ua)
 const isWeChat = /MicroMessenger/i.test(ua)
 
 
-export default class StartUpApp extends React.Component {
+export default class StartUpApp extends Component {
   static defaultProps = {
     text: '打开App',  // 按钮文案
     link: '', // URL scheme
@@ -72,13 +72,7 @@ export default class StartUpApp extends React.Component {
     const link = this.props.link
     const startTime = Date.now()
     const timeout = this.props.timeout
-    const { resetBtn, handlerFail } = this
-
-    // 微信屏蔽了直接唤起app，所以需要执行特殊操作。
-    if (isWeChat) {
-      handlerFail()
-      return
-    }
+    const { handlerFail } = this
 
     // ios直接启动更好
     if (isIOS) {
@@ -108,7 +102,6 @@ export default class StartUpApp extends React.Component {
       // 定时器没有变慢,判定唤起失败.
       if (Date.now() - startTime < timeout + 300) {
         handlerFail()
-        resetBtn()
       }
     }, timeout)
   }

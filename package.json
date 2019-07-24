@@ -3,11 +3,15 @@
   "version": "2.5.1",
   "description": "从浏览器H5启动手机App",
   "main": "dist/index.min.js",
+  "files": [
+    "dist",
+    "docs"
+  ],
   "scripts": {
-    "start": "yarn run dev",
+    "start": "npm run dev",
     "dev": "cross-env webpack-dev-server --hot --config build/webpack.config.dev.js --colors --profile",
     "build": "cross-env webpack --config build/webpack.config.build.js --colors --profile",
-    "pub": "yarn build && npm publish --access=public"
+    "release": "npm run build && npm publish --access=public"
   },
   "repository": {
     "type": "git",
@@ -69,10 +73,5 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ],
-  "files": [
-    "dist",
-    "ReadMe.md",
-    "docs"
   ]
 }
