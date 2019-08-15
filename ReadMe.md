@@ -1,6 +1,6 @@
 # [react-start-up-app](https://www.npmjs.com/package/@eleven.xi/react-start-up-app)
 
-> 从浏览器 H5 启动手机 App，提供默认的启动按钮，根据需要去覆盖按钮的样式。
+从浏览器 H5 启动手机 App，提供默认的启动按钮，根据需要去覆盖按钮的样式。
 
 ## Introduction
 
